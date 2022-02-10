@@ -25,7 +25,7 @@ export default new Vuex.Store({
   actions: {
     getCurrencies({commit}){
       return new Promise((resolve, reject) => {
-        axios.get('https://api.exchangeratesapi.io/latest').then((response) => {
+        axios.get('http://api.exchangeratesapi.io/v1/latest?access_key=ccc2a189152d2b7241f063e93643ed6f').then((response) => {
           //console.log(response.data);
           resolve("Success");
           commit('setCurrencies', response.data['rates']);
@@ -36,7 +36,8 @@ export default new Vuex.Store({
     },
     getBaseCurrencies({commit}, base){
       console.log(base);
-        axios.get(`https://api.openrates.io/latest?base=${base}`).then((response) => {
+        axios.get(`http://api.exchangeratesapi.io/v1/latest?access_key=ccc2a189152d2b7241f063e93643ed6f
+`).then((response) => {
           //console.log(response.data);
           commit('setBaseCurrencies', response.data['rates']);
           commit('setBase', response.data['base']);
